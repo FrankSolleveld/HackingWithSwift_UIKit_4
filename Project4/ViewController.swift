@@ -13,6 +13,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
     // MARK: -- Custom Variables
     var webView: WKWebView!
     var progressView: UIProgressView!
+    var websites = ["apple.com", "devfrank.org"]
     
     // MARK: -- Lifecycle Methods
     override func loadView() {
@@ -24,7 +25,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBarItems()
-        let url = URL(string: "https://devfrank.org")!
+        let url = URL(string: "https:" + websites[0])!
         webView.load(URLRequest(url: url))
         webView.allowsBackForwardNavigationGestures = true
     }
@@ -44,8 +45,9 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     @objc func openTapped() {
         let ac = UIAlertController(title: "Open Page...", message: nil, preferredStyle: .actionSheet)
-        ac.addAction(UIAlertAction(title: "apple.com", style: .default, handler: openPage))
-        ac.addAction(UIAlertAction(title: "amazon.com", style: .default, handler: openPage))
+        for website in websites {
+            ac.addAction(UIAlertAction(title: website, style: .default, handler: openPage))
+        }
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         ac.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         present(ac, animated: true)
@@ -67,5 +69,17 @@ class ViewController: UIViewController, WKNavigationDelegate {
                 progressView.progress = Float(webView.estimatedProgress)
             }
     }
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        let url = navigationAction.request.url
+        if let host = url?.host {
+            for website in websites {
+                if host.contains(website){
+                    decisionHandler(.allow)
+                    return
+                }
+            }
+        }
+        decisionHandler(.cancel)
+    }
 }
-
