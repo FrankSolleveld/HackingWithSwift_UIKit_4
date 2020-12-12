@@ -11,7 +11,7 @@ import WebKit
 class ViewController: UIViewController, WKNavigationDelegate {
 
     // MARK: -- Custom Variables
-    @objc var webView: WKWebView!
+    var webView: WKWebView!
     var progressView: UIProgressView!
     
     // MARK: -- Lifecycle Methods
