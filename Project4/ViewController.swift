@@ -7,7 +7,6 @@
 
 /*
  CHALLENGE TIME
- - Make two new toolbar buttons titled Back and Forward with the actions webView.goBack and webView.goForward.
  - Try changing the initial view controller to be a table view controller like in project 1, where users can choose their website from a list rather than having the first in the array loading up front.
  */
 
@@ -40,11 +39,13 @@ class ViewController: UIViewController, WKNavigationDelegate {
     func setupBarItems(){
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open", style: .plain, target: self, action: #selector(openTapped))
         let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let goBack = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"),style: .plain, target: webView, action: #selector(webView.goBack))
+        let goForward = UIBarButtonItem(image: UIImage(systemName: "chevron.forward"),style: .plain, target: webView, action: #selector(webView.goForward))
         let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
         progressView = UIProgressView(progressViewStyle: .default)
         progressView.sizeToFit()
         let progressButton = UIBarButtonItem(customView: progressView)
-        toolbarItems = [progressButton, spacer, refresh]
+        toolbarItems = [goBack, goForward, progressButton, spacer, refresh]
         navigationController?.isToolbarHidden = false
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
     }
