@@ -9,10 +9,12 @@ import UIKit
 
 class IndexViewController: UITableViewController {
     
-    var websites: [String] = ["apple.com", "devfrank.org", "macrumors.com", "nos.nl"]
+    var websites: [String] = ["apple.com", "devfrank.org", "macrumors.com", "nos.nl", "kevin-jansen.dev"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Cringe Browser"
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 
     // MARK: - Table view data source
