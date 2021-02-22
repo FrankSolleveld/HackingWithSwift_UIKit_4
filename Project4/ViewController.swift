@@ -18,7 +18,8 @@ class ViewController: UIViewController, WKNavigationDelegate {
     // MARK: -- Custom Variables
     var webView: WKWebView!
     var progressView: UIProgressView!
-    var websites = ["apple.com", "devfrank.org"]
+    var selectedWebsite: String?
+    var websites = [String]()
     
     // MARK: -- Lifecycle Methods
     override func loadView() {
@@ -30,8 +31,10 @@ class ViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBarItems()
-        let url = URL(string: "https:" + websites[0])!
-        webView.load(URLRequest(url: url))
+        if let site = selectedWebsite {
+            let url = URL(string: "https:" + site)!
+            webView.load(URLRequest(url: url))
+        }
         webView.allowsBackForwardNavigationGestures = true
     }
 

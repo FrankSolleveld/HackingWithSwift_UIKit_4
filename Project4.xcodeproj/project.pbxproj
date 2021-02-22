@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9519D7D025E39D76003887FF /* IndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9519D7CF25E39D76003887FF /* IndexViewController.swift */; };
 		95A11A3B2584C61A006C0A90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A11A3A2584C61A006C0A90 /* AppDelegate.swift */; };
 		95A11A3D2584C61A006C0A90 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A11A3C2584C61A006C0A90 /* SceneDelegate.swift */; };
 		95A11A3F2584C61A006C0A90 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A11A3E2584C61A006C0A90 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9519D7CF25E39D76003887FF /* IndexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexViewController.swift; sourceTree = "<group>"; };
 		95A11A372584C61A006C0A90 /* Project4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95A11A3A2584C61A006C0A90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95A11A3C2584C61A006C0A90 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			children = (
 				95A11A3A2584C61A006C0A90 /* AppDelegate.swift */,
 				95A11A3C2584C61A006C0A90 /* SceneDelegate.swift */,
+				9519D7CF25E39D76003887FF /* IndexViewController.swift */,
 				95A11A3E2584C61A006C0A90 /* ViewController.swift */,
 				95A11A402584C61A006C0A90 /* Main.storyboard */,
 				95A11A432584C61C006C0A90 /* Assets.xcassets */,
@@ -140,6 +143,7 @@
 				95A11A3F2584C61A006C0A90 /* ViewController.swift in Sources */,
 				95A11A3B2584C61A006C0A90 /* AppDelegate.swift in Sources */,
 				95A11A3D2584C61A006C0A90 /* SceneDelegate.swift in Sources */,
+				9519D7D025E39D76003887FF /* IndexViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
