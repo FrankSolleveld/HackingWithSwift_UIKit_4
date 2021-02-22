@@ -5,11 +5,6 @@
 //  Created by Frank Solleveld on 12/12/2020.
 //
 
-/*
- CHALLENGE TIME
- - Try changing the initial view controller to be a table view controller like in project 1, where users can choose their website from a list rather than having the first in the array loading up front.
- */
-
 import UIKit
 import WebKit
 
@@ -18,7 +13,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
     // MARK: -- Custom Variables
     var webView: WKWebView!
     var progressView: UIProgressView!
-    var selectedWebsite: String?
+    var selectedWebsite: String = ""
     var websites = [String]()
     
     // MARK: -- Lifecycle Methods
@@ -31,10 +26,9 @@ class ViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBarItems()
-        if let site = selectedWebsite {
-            let url = URL(string: "https:" + site)!
-            webView.load(URLRequest(url: url))
-        }
+        let url = URL(string: "https:" + selectedWebsite)!
+        checkForWhitelist(site: selectedWebsite)
+        webView.load(URLRequest(url: url))
         webView.allowsBackForwardNavigationGestures = true
     }
 
@@ -66,7 +60,18 @@ class ViewController: UIViewController, WKNavigationDelegate {
     func openPage(action: UIAlertAction){
         guard let title = action.title else { return }
         guard let url = URL(string: "https://" + title) else { return }
+        selectedWebsite = title
+        checkForWhitelist(site: selectedWebsite)
         webView.load(URLRequest(url: url))
+    }
+    
+    func checkForWhitelist(site: String){
+        if site != selectedWebsite {
+            // Alert saying the website is not whitelisted.
+            let ac = UIAlertController(title: "Website not permitted", message: "This website is not whitelisted.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Got it", style: .default))
+            present(ac, animated: true)
+        }
     }
 
     // MARK: -- Delegate Methods
@@ -87,11 +92,6 @@ class ViewController: UIViewController, WKNavigationDelegate {
                 if host.contains(website){
                     decisionHandler(.allow)
                     return
-                } else {
-                    // Alert saying the website is not whitelisted.
-                    let ac = UIAlertController(title: "Website not permitted", message: "This website is not whitelisted.", preferredStyle: .alert)
-                    ac.addAction(UIAlertAction(title: "Got it", style: .default))
-                    present(ac, animated: true)
                 }
             }
         }
